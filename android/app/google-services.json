@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "912848242284",
+    "project_id": "projectbumira",
+    "storage_bucket": "projectbumira.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912848242284:android:5a9ac56ebfdd9afe42ba49",
+        "android_client_info": {
+          "package_name": "com.example.project_kel_bumira"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "912848242284-oc5kcb4lfpoo675gqbfht05ap4991kj0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4CpMYqOsWoN5s2UbzMIZyRoKOiCpM3wQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "912848242284-oc5kcb4lfpoo675gqbfht05ap4991kj0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
