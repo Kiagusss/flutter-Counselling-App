@@ -7,7 +7,7 @@ import 'pages/onboard-1.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -22,14 +22,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: AnimatedSplashScreen(
-        splashIconSize: 200,
+        splashIconSize: 240,
       splash: 'images/Logo-mind.png',
       nextScreen: OnBoard1(),
       splashTransition: SplashTransition.fadeTransition,
       pageTransitionType: PageTransitionType.topToBottom,
-      
+        
     ),
+   
       ),
+      
     );
   }
 }

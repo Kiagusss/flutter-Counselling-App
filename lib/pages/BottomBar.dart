@@ -5,8 +5,10 @@ import 'package:project_kel_bumira/pages/Chat.dart';
 import 'package:project_kel_bumira/pages/Profile.dart';
 import 'package:stylish_bottom_bar/model/bar_items.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
+import 'Explore.dart';
 import 'Journal.dart';
 import 'HomePage.dart';
+import 'icon.dart';
 
 void main() {
   runApp(const BottomBar());
@@ -21,7 +23,7 @@ class BottomBar extends StatelessWidget {
       title: 'Stylish Bottom Navigation Bar Example',
       theme: ThemeData(
         // useMaterial3: true,
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.blue,
       ),
       home: const AnimatedBarExample(),
       // home: const AnimatedBarExample(),
@@ -90,27 +92,25 @@ class _AnimatedBarExampleState extends State<AnimatedBarExample> {
             ),
           ),
           BottomBarItem(
-            
-              icon: const Icon(
-
-                Icons.chat_rounded,
-                size: 29,
-              ),
-              selectedIcon: const Icon(
-                Icons.style,
-              ),
-              backgroundColor: Colors.amber,
-              selectedColor: Color(0xff4852A1),
-              title: Text(
+            icon: const Icon(
+              Icons.chat_rounded,
+              size: 29,
+            ),
+            selectedIcon: const Icon(
+              Icons.style,
+            ),
+            backgroundColor: Colors.amber,
+            selectedColor: Color(0xff4852A1),
+            title: Text(
               'Chat',
               style: GoogleFonts.nunito(fontSize: 16),
-            ),),
+            ),
+          ),
           BottomBarItem(
             icon: const Icon(
               Icons.person,
               size: 33,
             ),
-          
             selectedIcon: const Icon(
               Icons.person,
             ),
@@ -165,7 +165,7 @@ class _AnimatedBarExampleState extends State<AnimatedBarExample> {
           controller: controller,
           children: [
             HomePage(),
-            Journal(),
+            Explore(),
             Chat(),
             Profile(),
           ],
