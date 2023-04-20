@@ -27,8 +27,9 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           children: <Widget>[
             TextFormField(
-              validator: (value) =>
-                  value == null || value.isEmpty ? 'Email can\'t be empty' : null,
+              validator: (value) => value == null || value.isEmpty
+                  ? 'Email can\'t be empty'
+                  : null,
               onSaved: (value) => _email = value!,
               decoration: InputDecoration(labelText: 'Email'),
             ),
@@ -58,11 +59,15 @@ class _LoginPageState extends State<LoginPage> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       try {
-        await _auth.signInWithEmailAndPassword(email: _email, password: _password);
-        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => AnimatedBarExample()), (_) => false);
+        await _auth.signInWithEmailAndPassword(
+            email: _email, password: _password);
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => AnimatedBarExample()),
+            (_) => false);
       } on FirebaseAuthException catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Error: ${e.message}')));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('Error: ${e.message}')));
       } catch (e) {
         print(e);
       }
@@ -78,10 +83,11 @@ class _LoginPageState extends State<LoginPage> {
         idToken: googleAuth.idToken,
       );
       await _auth.signInWithCredential(credential);
-      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => BottomBar()), (_) => false);
+      Navigator.pushAndRemoveUntil(context,
+          MaterialPageRoute(builder: (context) => BottomBar()), (_) => false);
     } on FirebaseAuthException catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: ${e.message}')));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Error: ${e.message}')));
     } catch (e) {
       print(e);
     }
