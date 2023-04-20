@@ -4,7 +4,7 @@ import 'package:project_kel_bumira/main.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:project_kel_bumira/pages/HomePage.dart';
 import 'package:project_kel_bumira/pages/BottomBar.dart';
-import 'package:project_kel_bumira/pages/login_page.dart';
+import 'package:project_kel_bumira/pages/Login.dart';
 import 'package:project_kel_bumira/pages/register_page.dart';
 
 class OnBoard1 extends StatefulWidget {

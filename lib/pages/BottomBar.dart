@@ -141,7 +141,7 @@ class _AnimatedBarExampleState extends State<AnimatedBarExample> {
 
       floatingActionButton: Container(
         constraints: BoxConstraints.tight(
-            Size(70, 70)), // ubah nilai Size sesuai kebutuhan
+            Size(70, 70)),
         child: FloatingActionButton(
           elevation: 200,
           onPressed: () {
