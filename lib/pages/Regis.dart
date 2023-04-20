@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project_kel_bumira/pages/BottomBar.dart';
 
 import 'Login.dart';
 
@@ -19,6 +20,19 @@ class _RegisterPageState extends State<RegisterPage> {
   late String _email, _password, _username;
   bool isChecked = false;
   @override
+  
+  void initState() {
+  super.initState();
+  FirebaseAuth.instance.authStateChanges().listen((user) {
+    if (user != null) {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => AnimatedBarExample()),
+        (Route<dynamic> route) => false,
+      );
+    }
+  });
+}
   Widget build(BuildContext context) {
     Color getColor(Set<MaterialState> states) {
       const Set<MaterialState> interactiveStates = <MaterialState>{

@@ -24,6 +24,20 @@ class _LoginPageState extends State<LoginPage> {
   late String _password;
   bool isChecked = false;
   @override
+
+  
+  void initState() {
+  super.initState();
+  FirebaseAuth.instance.authStateChanges().listen((user) {
+    if (user != null) {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => AnimatedBarExample()),
+        (Route<dynamic> route) => false,
+      );
+    }
+  });
+}
   Widget build(BuildContext context) {
     Color getColor(Set<MaterialState> states) {
       const Set<MaterialState> interactiveStates = <MaterialState>{

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_kel_bumira/main.dart';
@@ -25,6 +26,19 @@ class _OnBoard1State extends State<OnBoard1> {
   }
 
   @override
+
+   void initState() {
+  super.initState();
+  FirebaseAuth.instance.authStateChanges().listen((user) {
+    if (user != null) {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => AnimatedBarExample()),
+        (Route<dynamic> route) => false,
+      );
+    }
+  });
+}
   Widget build(BuildContext context) {
     return IntroductionScreen(
       showSkipButton: true,
