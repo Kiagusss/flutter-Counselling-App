@@ -56,24 +56,26 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void _signInWithEmail() async {
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
-      try {
-        await _auth.signInWithEmailAndPassword(
-            email: _email, password: _password);
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => AnimatedBarExample()),
-            (_) => false);
-      } on FirebaseAuthException catch (e) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text('Error: ${e.message}')));
-      } catch (e) {
-        print(e);
+ void _signInWithEmail() async {
+  if (_formKey.currentState!.validate()) {
+    _formKey.currentState!.save();
+    try {
+      await _auth.signInWithEmailAndPassword(email: _email, password: _password);
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => AnimatedBarExample()), (_) => false);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found' || e.code == 'wrong-password') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Invalid email or password')));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: ${e.message}')));
       }
+    } catch (e) {
+      print(e);
     }
   }
+}
+
 
   void _signInWithGoogle() async {
     try {

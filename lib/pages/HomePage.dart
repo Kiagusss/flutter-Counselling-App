@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_kel_bumira/pages/BottomBar.dart';
 
+import 'Login.dart';
 import 'ProfileTeacher.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,6 +16,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
     User? user = FirebaseAuth.instance.currentUser;
     String displayName = user!.displayName ?? '';
 
@@ -346,7 +348,17 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-          )
+          ),
+           ElevatedButton(
+              onPressed: () {
+                _auth.signOut();
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                    (Route<dynamic> route) => false);
+              },
+              child: Text('Log out'),
+            ),
         ],
       ),
       endDrawer: Drawer(

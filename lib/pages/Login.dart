@@ -185,12 +185,15 @@ class _LoginPageState extends State<LoginPage> {
                           )
                         ],
                       ),
-                      Text(
-                        "Forgot Password?",
-                        style: GoogleFonts.nunito(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xff4852A1),
+                      GestureDetector(
+                        onTap: _resetPassword,
+                        child: Text(
+                          "Forgot Password?",
+                          style: GoogleFonts.nunito(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xff4852A1),
+                          ),
                         ),
                       ),
                     ],
@@ -350,6 +353,56 @@ class _LoginPageState extends State<LoginPage> {
       print(e);
     }
   }
+  void _resetPassword() async {
+  final emailController = TextEditingController();
+
+  await showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Reset Password'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            TextFormField(
+              controller: emailController,
+              validator: (value) => value == null || value.isEmpty
+                  ? 'Email can\'t be empty'
+                  : null,
+              decoration: InputDecoration(labelText: 'Email'),
+            ),
+          ],
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () async {
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
+                try {
+                  await _auth.sendPasswordResetEmail(email: emailController.text);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Password reset email sent')));
+                } on FirebaseAuthException catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Error: ${e.message}')));
+                } catch (e) {
+                  print(e);
+                }
+                Navigator.pop(context);
+              }
+            },
+            child: Text('Reset Password'),
+          ),
+        ],
+      );
+    },
+  );
+}
+
 }
 
 
