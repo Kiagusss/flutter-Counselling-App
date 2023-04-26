@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_kel_bumira/pages/BottomBar.dart';
-
+import 'package:project_kel_bumira/pages/Settings.dart';
 import 'Login.dart';
 import 'ProfileTeacher.dart';
 
@@ -18,15 +18,16 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     User? user = FirebaseAuth.instance.currentUser;
-    String displayName = user!.displayName ?? '';
+    String displayName = user!.displayName ?? ''; 
 
     return Scaffold(
       key: _scaffoldKey,
       body: ListView(
         children: [
           Container(
-            margin: EdgeInsets.only(left: 20, top: 30),
+            margin: EdgeInsets.only(left: 20, top: 30, right: 20),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   'Hi, $displayName!',
@@ -35,7 +36,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    _scaffoldKey.currentState!.openEndDrawer();
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> Settings()));
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(left: 140),
@@ -349,17 +350,9 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-           ElevatedButton(
-              onPressed: () {
-                _auth.signOut();
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
-                    (Route<dynamic> route) => false);
-              },
-              child: Text('Log out'),
-            ),
-        ],
+          
+          
+        ],  
       ),
       endDrawer: Drawer(
         width: 250,
